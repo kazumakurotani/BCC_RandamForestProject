@@ -5,11 +5,11 @@ class Main():
         # 操作内容を選択
         self.options = {
             0: "labeling_image",
-            1: "gerating_image"
+            1: "generating"
         }
 
         # 処理内容の選択
-        self.is_select_option = 0
+        self.is_select_option = 1
 
         # 処理項目の選択
         self.is_select_class_index = "class2"
@@ -23,8 +23,8 @@ class Main():
     def labeling_image(self):
         self.manager.manage_dataset("labeling", self.is_select_class_index)
 
-    def generating_image(self):
-        self.manager.manage_dataset("generationg", self.augmentation_option)
+    def generate_image(self):
+        self.manager.manage_dataset("generating", self.augmentation_option)
 
     def message(self):
         print("処理が完了しました")

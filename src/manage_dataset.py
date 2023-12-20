@@ -10,6 +10,8 @@ class DataSetManager:
         # 操作に基づいて子モジュールの関数を呼び出す
         if operation == "labeling":
             return labeling_image.labeling_image(*args, **kwargs)
+        elif operation == "generating":
+            return generate_image.generate_images(*args, **kwargs)
         else:
             raise ValueError(f"Unsupported operation: {operation}")
 
