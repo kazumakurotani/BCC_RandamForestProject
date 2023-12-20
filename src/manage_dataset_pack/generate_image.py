@@ -1,95 +1,208 @@
+import os
+import random
+from typing import Dict, List
+
 import cv2
 import numpy as np
-import random
-import os
+from tqdm import tqdm
 
 
-def generate_images(input_dir: str, output_dir: str, max_shift: int, rotation_step: int, n_rotations: int) -> None:
+def generate_images(augmentation_option=0) -> None:
     """
-    指定されたディレクトリ内の画像を処理し、結果を別のディレクトリに保存する。
+    画像データを生成します。
 
     Args:
-    input_dir (str): 入力画像のディレクトリ。
-    output_dir (str): 出力画像のディレクトリ。
-    max_shift (int): 画像移動の最大量。
-    rotation_step (int): 回転のステップ（度）。
-    n_rotations (int): 回転画像の数。
+        augmentation_option (int): データ拡張のオプション。0または1。
 
     Returns:
-    None
+        None
     """
-    for filename in os.listdir(input_dir):
-        if filename.lower().endswith(('.png', '.jpg', '.jpeg')):
-            image_path = os.path.join(input_dir, filename)
-            image = gi.load_image(image_path)
+    # parameters
+    N = 5 # 画像の生成枚数
+    SHIFT_REGION = 10 # shiftの移動領域
 
-            # 画像の移動
-            translated_image = gi.translate_image(image, max_shift)
-            gi.save_image(translated_image, os.path.join(output_dir, f"translated_{filename}"))
+    # paths
+    input_dir_path = "data\\raw\\labeled"
+    output_dir_path = "data\\generated"
 
-            # 画像の回転
-            rotated_images = gi.rotate_images(image, rotation_step, n_rotations)
-            for i, rotated_image in enumerate(rotated_images):
-                gi.save_image(rotated_image, os.path.join(output_dir, f"rotated_{i}_{filename}"))
+    # 画像データのパスの取得
+    image_paths = _get_image_paths(input_dir_path)
+
+    # 格納用変数
+    generated_log = {}
+
+    # 処理の開始
+    for label_name, path_list in tqdm(image_paths.items(), desc="Generating images"):
+        for image_path in path_list:
+            # 画像の読み込み
+            image = _load_image(image_path)
+
+            generated_images = {}
+            log_list = []
+
+            name_ext_pair = os.path.splitext(os.path.basename(image_path))
+
+            # 画像を生成
+            for i in range(N):
+                num = str(i+1).zfill(2)  # 01, 02, ...
+
+                if i == 0:
+                    log = f"{num}, base"
+                else:
+                    if augmentation_option == 0:
+                        image, param_rotate = _rotate_image(image, N, i)
+                        image, param_shift = _shift_image(image, SHIFT_REGION)
+                        log = f"{num}, rotate: {param_rotate}, shift: {param_shift}"
+                    elif augmentation_option == 1:
+                        image, param_rotate = _rotate_image(image, N, i)
+                        log = f"{num}, rotate: {param_rotate}"
+
+                new_filename = f"{name_ext_pair[0]}_{num}{name_ext_pair[1]}"
+
+                generated_images[new_filename] = image
+                log_list.append(log)
+
+                # 画像の保存
+                _save_image(image, output_dir_path, label_name, new_filename)
+
+            # logの追記
+            generated_log[name_ext_pair[0]] = log_list
+
+    _save_log(output_dir_path, generated_log)
 
 
-def load_image(image_path: str) -> np.ndarray:
+def _get_image_paths(input_dir_path: str) -> Dict[str, List[str]]:
     """
-    画像ファイルを読み込む。
+    与えられたディレクトリ内の画像ファイルのパスをラベル別に収集します。
 
     Args:
-    image_path (str): 画像ファイルのパス。
+        input_dir_path (str): 画像ファイルが格納されているディレクトリのパス。
 
     Returns:
-    np.ndarray: 読み込まれた画像。
+        Dict[str, List[str]]: ラベルごとの画像ファイルのパスを含むディクショナリ。
+            キーはラベルディレクトリの名前で、値はそのラベルに関連付けられた画像ファイルのパスのリストです。
     """
-    return cv2.imread(image_path, cv2.IMREAD_COLOR)
+    # 格納用変数
+    image_paths = {}
 
-def translate_image(image: np.ndarray, max_shift: int) -> np.ndarray:
+    # datasetのパスを取得
+    for label_dir in os.listdir(input_dir_path):
+        label_dir_path = os.path.join(input_dir_path, label_dir)
+
+        label_dir_image_paths = [
+            f for f in os.listdir(label_dir_path) if os.path.isfile(os.path.join(label_dir_path, f))
+        ]
+
+        image_paths[label_dir] = [os.path.join(label_dir_path, f) for f in label_dir_image_paths]
+
+    return image_paths
+
+
+def _load_image(image_path: str) -> np.ndarray:
     """
-    画像をランダムに移動させる。
+    画像ファイルを指定されたパスから読み込みます。
 
     Args:
-    image (np.ndarray): 入力画像。
-    max_shift (int): 移動量の最大値。
+        image_path (str): 読み込む画像ファイルのパス。
 
     Returns:
-    np.ndarray: 移動された画像。
-    """
-    rows, cols, _ = image.shape
-    x_shift = random.randint(-max_shift, max_shift)
-    y_shift = random.randint(-max_shift, max_shift)
-    M = np.float32([[1, 0, x_shift], [0, 1, y_shift]])
-    return cv2.warpAffine(image, M, (cols, rows))
+        np.ndarray: 読み込まれた画像データのNumPy配列。
 
-def rotate_images(image: np.ndarray, rotation_step: int, n_rotations: int) -> list:
+    Raises:
+        ValueError: サポートされていないファイル形式の場合に発生します。
     """
-    画像を指定されたステップで複数回回転させる。
+    # 画像ファイル形式をチェック
+    supported_formats = ('.png', '.jpg', '.jpeg')
+    if image_path.lower().endswith(supported_formats):
+        # OpenCVを使用して画像を読み込む
+        image = cv2.imread(image_path, cv2.IMREAD_COLOR)
+        if image is None:
+            raise ValueError(f"{image_path}: 画像を読み込めませんでした。")
+        return image
+    else:
+        raise ValueError(f"{image_path}: サポートされていないデータ形式です。")
+
+
+def _shift_image(image: np.ndarray, SHIFT_REGION) -> np.ndarray:
+    """
+    画像をランダムにシフトする。
 
     Args:
-    image (np.ndarray): 入力画像。
-    rotation_step (int): 回転のステップ（度）。
-    n_rotations (int): 生成する回転画像の数。
+        image (np.ndarray): シフトする画像。
 
     Returns:
-    list of np.ndarray: 回転された画像のリスト。
+        np.ndarray: シフトされた画像。
     """
-    rows, cols, _ = image.shape
-    rotated_images = []
-    for i in range(n_rotations):
-        M = cv2.getRotationMatrix2D((cols/2, rows/2), i * rotation_step, 1)
-        rotated_images.append(cv2.warpAffine(image, M, (cols, rows)))
-    return rotated_images
+    # シフト量の決定
+    shift_x = random.randint(-SHIFT_REGION, SHIFT_REGION)
+    shift_y = random.randint(-SHIFT_REGION, SHIFT_REGION)
 
-def save_image(image: np.ndarray, output_path: str) -> None:
+    M = np.float32([[1, 0, shift_x], [0, 1, shift_y]])
+
+    # シフトの実行
+    shifted = cv2.warpAffine(image, M, (image.shape[1], image.shape[0]))
+
+    # 記載用変数の生成
+    param = f"{shift_x}, {shift_y}"
+
+    return shifted, param
+
+
+def _rotate_image(image: np.ndarray, N, i) -> np.ndarray:
     """
-    画像をファイルに保存する。
+    与えられた画像をランダムな角度で回転させる。
 
     Args:
-    image (np.ndarray): 保存する画像。
-    output_path (str): 出力ファイルのパス。
+        image (np.ndarray): 回転させる画像。形状は (高さ, 幅, チャネル) の形式。
 
     Returns:
-    None
+        np.ndarray: 回転後の画像。
     """
+    # 角度をランダムに生成
+    angle = 360/N * (i+1)
+
+    # 回転行列の生成
+    M = cv2.getRotationMatrix2D((image.shape[1] // 2, image.shape[0] // 2), angle, 1)
+
+    # 回転の実行
+    rotated = cv2.warpAffine(image, M, (image.shape[1], image.shape[0]))
+
+    # 記載用変数の生成
+    param = f"{angle}"
+
+    return rotated, param
+
+
+def _save_image(image: np.ndarray, output_dir_path: str, label_name: str, new_filename: str) -> None:
+    """
+    画像を指定されたディレクトリに保存します。
+
+    Args:
+        image (np.ndarray): 保存する画像データのNumPy配列。
+        output_dir_path (str): 保存先のディレクトリのパス。
+        label_name (str): 画像のラベル名。
+        new_filename (str): 新しいファイル名。
+
+    Returns:
+        None
+    """
+    output_path = os.path.join(output_dir_path, label_name, new_filename)
     cv2.imwrite(output_path, image)
+
+
+def _save_log(output_dir_path: str, generated_log: Dict[str, List[str]]) -> None:
+    """
+    生成されたログを指定されたファイルに保存します。
+
+    Args:
+        output_dir_path (str): ログファイルの保存先ディレクトリのパス。
+        generated_log (Dict[str, List[str]]): 生成されたログ情報の辞書。
+
+    Returns:
+        None
+    """
+    output_file = os.path.join(output_dir_path, "log.txt")
+    with open(output_file, "a") as f:
+        for base_file_name, log_list in generated_log.items():
+            for log in log_list:
+                f.write(f"{base_file_name}, {log}\n")

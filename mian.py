@@ -4,7 +4,8 @@ class Main():
     def __init__(self) -> None:
         # 操作内容を選択
         self.options = {
-            0: "labeling_image"
+            0: "labeling_image",
+            1: "gerating_image"
         }
 
         # 処理内容の選択
@@ -13,10 +14,17 @@ class Main():
         # 処理項目の選択
         self.is_select_class_index = "class2"
 
-    def labeling_image(self):
-        manager = manage_dataset.DataSetManager()
+        # generationg_imageのオプション
+        self.augmentation_option = 1
 
-        manager.manage_dataset("labeling", self.is_select_class_index)
+        # インスタンスの生成
+        self.manager = manage_dataset.DataSetManager()
+
+    def labeling_image(self):
+        self.manager.manage_dataset("labeling", self.is_select_class_index)
+
+    def generating_image(self):
+        self.manager.manage_dataset("generationg", self.augmentation_option)
 
     def message(self):
         print("処理が完了しました")
@@ -24,7 +32,9 @@ class Main():
     def main(self):
         if self.is_select_option == 0:
             self.labeling_image()
-            self.message()
+        elif self.is_select_option == 1:
+            self.generating_image()
+        self.message()
 
 if __name__ == "__main__":
     Main = Main()
