@@ -16,7 +16,7 @@ def labeling_image(class_index) -> None:
         None
     """
     # path
-    input_image_dir_path = "data\\raw\\image"
+    input_image_dir_path = "data\\raw\\images"
     labels_file_path = "data\\raw\\labels\\labels.csv"
     labels_correspondence_file_path = "data\\raw\\labels\\labels_correspondence.csv"
     output_root_dir_path = "data\\raw\\labeled"
