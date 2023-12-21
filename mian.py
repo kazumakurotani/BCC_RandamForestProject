@@ -21,9 +21,11 @@ class Main():
         self.manager = manage_dataset.DataSetManager()
 
     def labeling_image(self):
+        print("Start Labeling Image")
         self.manager.manage_dataset("labeling", self.is_select_class_index)
 
-    def generate_image(self):
+    def generating_image(self):
+        print("Start Generating Image")
         self.manager.manage_dataset("generating", self.augmentation_option)
 
     def message(self):

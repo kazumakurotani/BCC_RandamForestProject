@@ -10,7 +10,7 @@ Granulocytes,Metamyelocyte,2,4,1
 Granulocytes,Stab_cell,2,5,2
 Granulocytes,Segmented cell,2,5,3
 Granulocytes,Eosinophil(immature),2,6,2
-Granulocytes,Eosinophil (mature),2,6,3
+Granulocytes,Eosinophil(mature),2,6,3
 Granulocytes,Basophil(immature),2,7,2
 Granulocytes,Basophil(mature),2,7,3
 Other white bloodcells,Monocyte,3,1,1

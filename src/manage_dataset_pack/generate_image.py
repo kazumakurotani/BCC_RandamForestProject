@@ -6,6 +6,8 @@ import cv2
 import numpy as np
 from tqdm import tqdm
 
+import shutil
+
 
 def generate_images(augmentation_option=0) -> None:
     """
@@ -18,12 +20,16 @@ def generate_images(augmentation_option=0) -> None:
         None
     """
     # parameters
-    N = 5 # 画像の生成枚数
+    N = 8 # 画像の生成枚数
     SHIFT_REGION = 10 # shiftの移動領域
 
     # paths
     input_dir_path = "data\\raw\\labeled"
     output_dir_path = "data\\generated"
+    output_log_dir_path = "logs"
+
+    # 出力フォルダの作成
+    _create_directories(input_dir_path, output_dir_path)
 
     # 画像データのパスの取得
     image_paths = _get_image_paths(input_dir_path)
@@ -34,8 +40,8 @@ def generate_images(augmentation_option=0) -> None:
     # 処理の開始
     for label_name, path_list in tqdm(image_paths.items(), desc="Generating images"):
         for image_path in path_list:
-            # 画像の読み込み
-            image = _load_image(image_path)
+            # pathの生成
+            image_path = os.path.join(input_dir_path, label_name, image_path)
 
             generated_images = {}
             log_list = []
@@ -45,6 +51,9 @@ def generate_images(augmentation_option=0) -> None:
             # 画像を生成
             for i in range(N):
                 num = str(i+1).zfill(2)  # 01, 02, ...
+
+                # 画像の読み込み
+                image = _load_image(image_path)
 
                 if i == 0:
                     log = f"{num}, base"
@@ -62,13 +71,38 @@ def generate_images(augmentation_option=0) -> None:
                 generated_images[new_filename] = image
                 log_list.append(log)
 
-                # 画像の保存
-                _save_image(image, output_dir_path, label_name, new_filename)
+            # 画像の保存
+            for file_name, generated_image in generated_images.items():
+                _save_image(generated_image, output_dir_path, label_name, file_name)
 
             # logの追記
             generated_log[name_ext_pair[0]] = log_list
 
-    _save_log(output_dir_path, generated_log)
+    _save_log(output_log_dir_path, generated_log)
+
+
+def _create_directories(input_dir_path: str, output_root_path: str) -> None:
+    """
+    ラベリング結果を出力するディレクトリの作成
+
+    Args:
+        output_root_path (str): 保存先のルートパス
+        class_index (str): ラベリングしたい項目
+
+    Returns:
+        output_paths(dict): 出力先のパス
+    """
+    # 格納用変数
+    output_paths = {}
+
+    # ディレクトリ内のデータを全削除
+    shutil.rmtree(output_root_path)
+
+    # 各ユニークな値に対してディレクトリを作成
+    for name in tqdm(os.listdir(input_dir_path), desc="Creating Output Directories"):
+        dir_path = os.path.join(output_root_path, name)
+        output_paths[name] = dir_path
+        os.makedirs(dir_path, exist_ok = True)
 
 
 def _get_image_paths(input_dir_path: str) -> Dict[str, List[str]]:
@@ -90,10 +124,10 @@ def _get_image_paths(input_dir_path: str) -> Dict[str, List[str]]:
         label_dir_path = os.path.join(input_dir_path, label_dir)
 
         label_dir_image_paths = [
-            f for f in os.listdir(label_dir_path) if os.path.isfile(os.path.join(label_dir_path, f))
+            f for f in os.listdir(label_dir_path) if os.path.isdir(label_dir_path)
         ]
 
-        image_paths[label_dir] = [os.path.join(label_dir_path, f) for f in label_dir_image_paths]
+        image_paths[label_dir] = label_dir_image_paths
 
     return image_paths
 
@@ -159,7 +193,7 @@ def _rotate_image(image: np.ndarray, N, i) -> np.ndarray:
         np.ndarray: 回転後の画像。
     """
     # 角度をランダムに生成
-    angle = 360/N * (i+1)
+    angle = 360/N * i
 
     # 回転行列の生成
     M = cv2.getRotationMatrix2D((image.shape[1] // 2, image.shape[0] // 2), angle, 1)
@@ -190,7 +224,7 @@ def _save_image(image: np.ndarray, output_dir_path: str, label_name: str, new_fi
     cv2.imwrite(output_path, image)
 
 
-def _save_log(output_dir_path: str, generated_log: Dict[str, List[str]]) -> None:
+def _save_log(output_log_dir_path: str, generated_log: Dict[str, List[str]]) -> None:
     """
     生成されたログを指定されたファイルに保存します。
 
@@ -201,7 +235,7 @@ def _save_log(output_dir_path: str, generated_log: Dict[str, List[str]]) -> None
     Returns:
         None
     """
-    output_file = os.path.join(output_dir_path, "log.txt")
+    output_file = os.path.join(output_log_dir_path, "generating.txt")
     with open(output_file, "a") as f:
         for base_file_name, log_list in generated_log.items():
             for log in log_list:

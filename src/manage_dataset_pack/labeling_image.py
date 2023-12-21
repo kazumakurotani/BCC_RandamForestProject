@@ -20,6 +20,7 @@ def labeling_image(class_index) -> None:
     labels_file_path = "data\\raw\\labels\\labels.csv"
     labels_correspondence_file_path = "data\\raw\\labels\\labels_correspondence.csv"
     output_root_dir_path = "data\\raw\\labeled"
+    output_logs_dir_path = "logs"
 
     # CSVファイルを読み込む
     labels_df = pd.read_csv(labels_file_path)
@@ -39,7 +40,7 @@ def labeling_image(class_index) -> None:
     )
 
     # 仕分け結果を記録
-    result_text_file = os.path.join(output_root_dir_path, "restlt.txt")
+    result_text_file = os.path.join(output_logs_dir_path, "labeling.txt")
     _count_files(output_root_dir_path, result_text_file)
 
     _remove_empty_directories(output_root_dir_path, result_text_file)
