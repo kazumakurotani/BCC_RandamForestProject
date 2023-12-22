@@ -15,7 +15,7 @@ class Main():
         self.is_select_class_index = "class2"
 
         # generationg_imageのオプション
-        self.augmentation_option = 1
+        self.augmentation_option = 0 # 0: shift and rotate 1:rotate
 
         # インスタンスの生成
         self.manager = manage_dataset.DataSetManager()

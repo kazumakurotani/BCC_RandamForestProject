@@ -235,8 +235,12 @@ def _save_log(output_log_dir_path: str, generated_log: Dict[str, List[str]]) -> 
     Returns:
         None
     """
+    # outputpathの生成
     output_file = os.path.join(output_log_dir_path, "generating.txt")
+
     with open(output_file, "a") as f:
+        # ファイルの初期化
+        f.truncate(0)
         for base_file_name, log_list in generated_log.items():
             for log in log_list:
                 f.write(f"{base_file_name}, {log}\n")

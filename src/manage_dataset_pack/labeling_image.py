@@ -131,11 +131,15 @@ def _count_files(output_root_dir_path: str, output_file: str) -> None:
 
     file_count = 0
     with open(output_file, "a") as f:
+        # ファイルの初期化
+        f.truncate(0)
+
         for class_index in os.listdir(output_root_dir_path):
             dir_path = os.path.join(output_root_dir_path, class_index)
-            count = len(dir_path)
-            file_count += count
-            f.write(f"{class_index}: {count}\n")
+            if os.path.isdir(dir_path):  # 現在の要素がディレクトリであることを確認します
+                count = len(os.listdir(dir_path))  # ディレクトリ内のファイル数を数えます
+                file_count += count
+                f.write(f"{class_index}: {count}\n")
 
         f.write(f"合計ファイル数: {file_count}\n")
 
@@ -150,6 +154,7 @@ def _remove_empty_directories(output_root_dir_path: str, output_file: str) -> No
     Returns:
     None
     """
+
     with open(output_file, "a") as f:
         # 指定されたディレクトリ内のすべてのサブディレクトリを走査
         for root, dirs, files in os.walk(output_root_dir_path, topdown=False):
