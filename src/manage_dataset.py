@@ -1,5 +1,6 @@
 from src.manage_dataset_pack import labeling_image
 from src.manage_dataset_pack import generate_image
+from src.manage_dataset_pack import initialize_dataset
 
 
 class DataSetManager:
@@ -12,10 +13,7 @@ class DataSetManager:
             return labeling_image.labeling_image(*args, **kwargs)
         elif operation == "generating":
             return generate_image.generate_images(*args, **kwargs)
-        else:
-            raise ValueError(f"Unsupported operation: {operation}")
-
-        if operation == "gerating_image":
-            return generate_image.generate_images(*args, **kwargs)
+        elif operation == "initializing":
+            return initialize_dataset.initialize_dataset(*args, **kwargs)
         else:
             raise ValueError(f"Unsupported operation: {operation}")

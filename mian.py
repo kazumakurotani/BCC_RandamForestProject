@@ -5,11 +5,12 @@ class Main():
         # 操作内容を選択
         self.options = {
             0: "labeling_image",
-            1: "generating"
+            1: "generating",
+            999: "initializing"
         }
 
         # 処理内容の選択
-        self.is_select_option = 1
+        self.is_select_option = 999
 
         # 処理項目の選択
         self.is_select_class_index = "class2"
@@ -28,6 +29,10 @@ class Main():
         print("Start Generating Image")
         self.manager.manage_dataset("generating", self.augmentation_option)
 
+    def initializing_dataset(self):
+        print("Initializing Dataset")
+        self.manager.manage_dataset("initializing")
+
     def message(self):
         print("処理が完了しました")
 
@@ -36,6 +41,8 @@ class Main():
             self.labeling_image()
         elif self.is_select_option == 1:
             self.generating_image()
+        elif self.is_select_option == 999:
+            self.initializing_dataset()
         self.message()
 
 if __name__ == "__main__":
