@@ -6,7 +6,8 @@ import re
 from abc import ABCMeta, abstractmethod
 from pathlib import Path
 
-from typing import List
+import cv2
+from tqdm import tqdm
 
 import pandas as pd
 
@@ -25,7 +26,7 @@ def get_features(namespace):
 
 def generate_features(namespace, overwrite):
     for f in get_features(namespace):
-        if f.train_path.exists() and f.test_path.exists() and not overwrite:
+        if f.overall_path.exists() and not overwrite:
             print(f.name, 'was skipped')
         else:
             f.run().save()
@@ -35,10 +36,13 @@ class Feather(metaclass=ABCMeta):
     prefix = ''
     suffix = ''
     overall_dir = 'feature\\overall'
-    train_dir = 'feature\\train'
-    test_dir = 'feature\\test'
+    # train_dir = 'feature\\train'
+    # test_dir = 'feature\\test'
+
+    input_path = "data\\preprocessed"
+    is_initialized = False  # 全サブクラス間で共有されるクラス変数
     image_paths = []
-    directory_path = 
+    label_names = []
 
     def __init__(self):
         if self.__class__.__name__.isupper():
@@ -46,36 +50,31 @@ class Feather(metaclass=ABCMeta):
         else:
             self.name = re.sub("([A-Z])", lambda x: "_" + x.group(1).lower(), self.__class__.__name__).lstrip('_')
         self.overall = pd.DataFrame()
-        self.train = pd.DataFrame()
-        self.test = pd.DataFrame()
-        self.overall_path = Path(self.overall_dir) / f'{self.name}_train.ftr'
-        self.train_path = Path(self.train_dir) / f'{self.name}_train.ftr'
-        self.test_path = Path(self.test_dir) / f'{self.name}_test.ftr'
+        # self.train = pd.DataFrame()
+        # self.test = pd.DataFrame()
+        self.overall_path = Path(self.overall_dir) / f'{self.name}_overall.ftr'
+        # self.train_path = Path(self.train_dir) / f'{self.name}_train.ftr'
+        # self.test_path = Path(self.test_dir) / f'{self.name}_test.ftr'
+
+        if not Feather.is_initialized:
+            self._read_paths()
+            Feather.is_initialized = True
 
     def run(self):
         self.create_features()
         prefix = self.prefix + '_' if self.prefix else ''
         suffix = '_' + self.suffix if self.suffix else ''
         self.overall.columns = prefix + self.overall.columns + suffix
-        self.train.columns = prefix + self.train.columns + suffix
-        self.test.columns = prefix + self.test.columns + suffix
+        # self.train.columns = prefix + self.train.columns + suffix
+        # self.test.columns = prefix + self.test.columns + suffix
         return self
 
-    def get_image_paths(self) -> List[str]:
-        """
-        指定されたディレクトリ内のファイルのリストを返す。
-
-        Args:
-            directory_path (str): 読み込むディレクトリのパス。
-
-        Returns:
-            List[str]: ディレクトリ内のファイルのパスのリスト。
-        """
-        # datasetのパスを取得
-        for label_dir in os.listdir(directory_path):
-            label_dir_path = os.path.join(directory_path, label_dir)
-            for file in os.listdir(label_dir_path):
-                file_path = os.path.join(label_dir_path, file)
+    def _read_paths(self) -> None:
+        for dir in tqdm(os.listdir(self.input_path), desc="Reading Image Paths"):
+            self.label_names.append(dir)
+            dir_path = os.path.join(self.input_path, dir)
+            for f in os.listdir(dir_path):
+                file_path = os.path.join(dir_path, f)
                 self.image_paths.append(file_path)
 
     @abstractmethod
@@ -84,13 +83,13 @@ class Feather(metaclass=ABCMeta):
 
     def save(self):
         self.overall.to_feather(str(self.overall_path))
-        self.train.to_feather(str(self.train_path))
-        self.test.to_feather(str(self.test_path))
+        # self.train.to_feather(str(self.train_path))
+        # self.test.to_feather(str(self.test_path))
 
     def load(self):
         self.overall = pd.read_feather(str(self.overall_path))
-        self.train = pd.read_feather(str(self.train_path))
-        self.test = pd.read_feather(str(self.test_path))
+        # self.train = pd.read_feather(str(self.train_path))
+        # self.test = pd.read_feather(str(self.test_path))
 
     # 特徴量メモをCSVファイルに残す
     def create_memo(self, desc):
@@ -111,3 +110,26 @@ class Feather(metaclass=ABCMeta):
 
             writer = csv.writer(f)
             writer.writerow([self.name, desc])
+
+    # ラベルと保存した名前の対応表をCSVファイルに残す
+    def create_names_correspondence(self, names_correspondence):
+        file_path = os.path.join(self.overall_dir, '_names_correspondence.csv')
+        if not os.path.isfile(file_path):
+            with open(file_path, "w"):
+                pass
+
+            with open(file_path, "w", newline="", encoding="utf-8") as csvfile:
+                csv_writer = csv.writer(csvfile)
+                # CSVのヘッダーを書き込む
+                csv_writer.writerow(["Label", "Name"])
+                # 辞書のデータを行としてCSVに書き込む
+                for new_name, old_name in names_correspondence.items():
+                    csv_writer.writerow([new_name, old_name])
+
+        else:
+            pass
+
+    ############################################################
+
+    def load_image(self, image_path):
+        return cv2.imread(image_path, cv2.COLOR_BGR2GRAY)

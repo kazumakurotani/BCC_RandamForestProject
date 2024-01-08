@@ -20,7 +20,7 @@ def generate_images(augmentation_option=0) -> None:
         None
     """
     # parameters
-    N = 8 # 画像の生成枚数
+    N = 2 # 画像の生成枚数
     SHIFT_REGION = 10 # shiftの移動領域
 
     # paths
