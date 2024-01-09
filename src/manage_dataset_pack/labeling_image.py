@@ -62,7 +62,8 @@ def _create_directories_from_csv(database , output_root_path, class_index) -> No
     output_paths = {}
 
     # ディレクトリ内のデータを全削除
-    shutil.rmtree(output_root_path)
+    if os.path.isfile(output_root_path) is True:
+        shutil.rmtree(output_root_path)
 
     # 各ユニークな値に対してディレクトリを作成
     for name in tqdm(database[class_index].unique(), desc="Creating Output Directories"):

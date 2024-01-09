@@ -20,7 +20,7 @@ def generate_images(augmentation_option=0) -> None:
         None
     """
     # parameters
-    N = 2 # 画像の生成枚数
+    N = 4 # 画像の生成枚数
     SHIFT_REGION = 10 # shiftの移動領域
 
     # paths
@@ -96,7 +96,9 @@ def _create_directories(input_dir_path: str, output_root_path: str) -> None:
     output_paths = {}
 
     # ディレクトリ内のデータを全削除
-    shutil.rmtree(output_root_path)
+    # ディレクトリ内のデータを全削除
+    if os.path.isfile(output_root_path) is True:
+        shutil.rmtree(output_root_path)
 
     # 各ユニークな値に対してディレクトリを作成
     for name in tqdm(os.listdir(input_dir_path), desc="Creating Output Directories"):

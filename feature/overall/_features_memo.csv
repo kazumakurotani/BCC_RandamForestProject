@@ -1,2 +1,0 @@
-labels,The correct label of the image.
-grayscale_feature,Convert an image to grayscale and then flatten it into a one-dimensional array.

@@ -2,11 +2,11 @@ import pandas as pd
 import cv2
 
 # データフレームを読み込む
-dfs = pd.read_feather("feature\\overall\\labels_overall.ftr")
+dfs = pd.read_feather("feature\\feature_matrix\\feature_matrix.ftr")
+print(dfs)
 
 # データフレームをNumPy配列に変換
 array = dfs.to_numpy()
-print(array[0, :])
 array = array[:, 50]
 
 # 各行が128x128の画像データに対応していることを確認

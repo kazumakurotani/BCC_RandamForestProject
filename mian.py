@@ -1,4 +1,4 @@
-from src import manage_dataset, manage_feature
+from src import manage_dataset, manage_feature, manage_randamforest
 
 
 class Main():
@@ -9,11 +9,13 @@ class Main():
             1: "generating",
             2: "preprocessing",
             3: "feature_engineering",
+            4: "create_feature_matrix",
+            5: "train_and_evaluate",
             999: "initializing"
         }
 
         # 処理内容の選択
-        self.is_select_option = 3
+        self.is_select_option = 0
 
         #Dataset#########################################################################
 
@@ -35,6 +37,7 @@ class Main():
         # インスタンスの生成
         self.dm = manage_dataset.DataSetManager()
         self.fm = manage_feature.FeatureManager()
+        self.rfm = manage_randamforest.RandamForestManager()
 
 
     def labeling_image(self):
@@ -53,6 +56,14 @@ class Main():
         print("Start Feature Engineering")
         self.fm.manage_feature("feature_engineering")
 
+    def create_feature_matrix(self):
+        print("Start Creating Feature Matrix")
+        self.rfm.manage_randamforest("create_feature_matrix")
+
+    def train_and_evaluate(self):
+        print("Start Training and Evaluating")
+        self.rfm.manage_randamforest("train_and_evaluate")
+
     def initializing_dataset(self):
         print("Initializing Dataset")
         self.dm.manage_dataset("initializing")
@@ -69,6 +80,10 @@ class Main():
             self.proprocessing_image()
         elif self.is_select_option == 3:
             self.feature_engineering()
+        elif self.is_select_option == 4:
+            self.create_feature_matrix()
+        elif self.is_select_option == 5:
+            self.train_and_evaluate()
         elif self.is_select_option == 999:
             self.initializing_dataset()
         self.message()

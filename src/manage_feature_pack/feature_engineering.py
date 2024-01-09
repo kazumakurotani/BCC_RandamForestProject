@@ -37,8 +37,8 @@ class Labels(feather.Feather):
             for i, path in tqdm(enumerate(self.image_paths), desc="Labels"):
                 dir_path = os.path.dirname(path)
                 dir_name = os.path.basename(dir_path)
-                features[f"col_{i}"] = [encoded_labels[dir_name]]
-                names_correspondence[f"col_{i}"] = image_names[i]
+                features[str(i).zfill(6)] = [encoded_labels[dir_name]]
+                names_correspondence[str(i).zfill(6)] = image_names[i]
 
             new_df = pd.DataFrame(features)
             self.overall = pd.concat([self.overall, new_df], ignore_index=True)
@@ -64,8 +64,8 @@ class GrayscaleFeature(feather.Feather):
             try:
                 image = self.load_image(path)
                 gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-                features[f"col_{i}"] = gray_image.flatten()
-                names_correspondence[f"col_{i}"] = image_name
+                features[str(i).zfill(6)] = gray_image.flatten()
+                names_correspondence[str(i).zfill(6)] = image_name
             except Exception as e:
                 print(f"Error processing image {image_name}: {e}")
                 continue
