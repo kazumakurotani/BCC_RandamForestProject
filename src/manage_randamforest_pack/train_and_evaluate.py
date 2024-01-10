@@ -18,7 +18,7 @@ def train_and_evaluate():
     """
     # 特徴行列の保存先のpath
     feature_matrix_path = "feature\\feature_matrix\\feature_matrix.ftr"
-    labels_path = "feature\\feature_matrix\\labels_overall.ftr"
+    labels_path = "feature\\feature_matrix\\labels.ftr"
 
     # データをランダムに分割
     x_train, x_test, y_train, y_test = _load_data(feature_matrix_path, labels_path, test_size=0.2)

@@ -52,7 +52,7 @@ class Feather(metaclass=ABCMeta):
         self.overall = pd.DataFrame()
         # self.train = pd.DataFrame()
         # self.test = pd.DataFrame()
-        self.overall_path = Path(self.overall_dir) / f'{self.name}_overall.ftr'
+        self.overall_path = Path(self.overall_dir) / f'{self.name}.ftr'
         # self.train_path = Path(self.train_dir) / f'{self.name}_train.ftr'
         # self.test_path = Path(self.test_dir) / f'{self.name}_test.ftr'
 
@@ -82,6 +82,8 @@ class Feather(metaclass=ABCMeta):
         raise NotImplementedError
 
     def save(self):
+        if os.path.isdir(self.overall_dir) is False:
+            os.makedirs(self.overall_dir)
         self.overall.to_feather(str(self.overall_path))
         # self.train.to_feather(str(self.train_path))
         # self.test.to_feather(str(self.test_path))

@@ -3,6 +3,9 @@ import cv2
 from src.manage_feature_pack import feather
 import pandas as pd
 from tqdm import tqdm
+import numpy as np
+
+from skimage import feature
 
 
 def generate_features():
@@ -34,7 +37,8 @@ class Labels(feather.Feather):
         image_names = [os.path.basename(path) for path in self.image_paths]
 
         try:
-            for i, path in tqdm(enumerate(self.image_paths), desc="Labels"):
+            for i in tqdm(range(len(self.image_paths)), desc="Labels"):
+                path = self.image_paths[i]
                 dir_path = os.path.dirname(path)
                 dir_name = os.path.basename(dir_path)
                 features[str(i).zfill(6)] = [encoded_labels[dir_name]]
@@ -58,7 +62,8 @@ class GrayscaleFeature(feather.Feather):
         features = {}
         names_correspondence = {}
 
-        for i, path in tqdm(enumerate(self.image_paths), desc="GrayscaleFeature"):
+        for i in tqdm(range(len(self.image_paths)), desc="GrayscaleFeature"):
+            path = self.image_paths[i]
             image_name = os.path.basename(path)
 
             try:
@@ -76,17 +81,319 @@ class GrayscaleFeature(feather.Feather):
         self.create_names_correspondence(names_correspondence)
 
 
-"""def save_index_image_map_to_csv() -> None:
+class LbpGray(feather.Feather):
+    """
+    画像を読み込み、グレースケールに変換後、Local Binary Pattern 特徴量を計算する。
 
-    Save the index-image name mapping to a CSV file.
+    Args:
+        image_path (str): 画像のファイルパス。
 
-    csv_file_path = os.path.join("feature", '_features.csv')
+    Returns:
+        np.ndarray: LBP特徴量の一次元配列。
 
-    for i, path in tqdm(enumerate(self.image_paths), desc="GrayscaleFeature"):
-        index_image_name_map = {i: os.path.basename(path) for i, path in enumerate(image_paths)}
+    Raises:
+        IOError: 画像ファイルの読み込みに失敗した場合に発生。
+    """
+    def create_features(self):
+        features = {}
+        names_correspondence = {}
 
-    with open(csv_file_path, mode='w', newline='', encoding='utf-8') as file:
-        writer = csv.writer(file)
-        writer.writerow(['Index', 'Image Name'])  # Writing header
-        for index, image_name in index_image_name_map.items():
-            writer.writerow([index, image_name])"""
+        for i in tqdm(range(len(self.image_paths)), desc="LBP for Gray"):
+            path = self.image_paths[i]
+            image_name = os.path.basename(path)
+
+            try:
+                # 画像を読み込み、グレースケールに変換
+                image = self.load_image(path)
+                gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
+                # LBP特徴量を計算
+                points, radius = 16, 2
+                lbp = feature.local_binary_pattern(gray_image, points, radius, method="uniform")
+
+                # ヒストグラムを計算
+                hist, _ = np.histogram(lbp.ravel(), bins=points+2, range=(0, points+2), density=True)
+
+                features[str(i).zfill(6)] = hist
+                names_correspondence[str(i).zfill(6)] = image_name
+            except Exception as e:
+                print(f"Error processing image {image_name}: {e}")
+                continue
+
+        new_df = pd.DataFrame(features)
+        self.overall = pd.concat([self.overall, new_df], ignore_index=True)
+        self.create_memo("Convert an image to grayscale, compute Local Binary Patterns, and then flatten them into a one-dimensional array.")
+        self.create_names_correspondence(names_correspondence)
+
+
+class LbpRed(feather.Feather):
+    """
+    画像を読み込み、R成分に変換後、Local Binary Pattern 特徴量を計算する。
+
+    Args:
+        image_path (str): 画像のファイルパス。
+
+    Returns:
+        np.ndarray: LBP特徴量の一次元配列。
+
+    Raises:
+        IOError: 画像ファイルの読み込みに失敗した場合に発生。
+    """
+    def create_features(self):
+        features = {}
+        names_correspondence = {}
+
+        for i in tqdm(range(len(self.image_paths)), desc="LBP for Red"):
+            path = self.image_paths[i]
+            image_name = os.path.basename(path)
+
+            try:
+                # 画像を読み込み、グレースケールに変換
+                image = self.load_image(path)
+                red_image = image[:, :, 2]
+
+                # LBP特徴量を計算
+                points, radius = 16, 2
+                lbp = feature.local_binary_pattern(red_image, points, radius, method="uniform")
+
+                # ヒストグラムを計算
+                hist, _ = np.histogram(lbp.ravel(), bins=points+2, range=(0, points+2), density=True)
+
+                features[str(i).zfill(6)] = hist
+                names_correspondence[str(i).zfill(6)] = image_name
+            except Exception as e:
+                print(f"Error processing image {image_name}: {e}")
+                continue
+
+        new_df = pd.DataFrame(features)
+        self.overall = pd.concat([self.overall, new_df], ignore_index=True)
+        self.create_memo("Convert an image to R component, compute Local Binary Patterns, and then flatten them into a one-dimensional array.")
+        self.create_names_correspondence(names_correspondence)
+
+
+class LbpGreen(feather.Feather):
+    """
+    画像を読み込み、G成分に変換後、Local Binary Pattern 特徴量を計算する。
+
+    Args:
+        image_path (str): 画像のファイルパス。
+
+    Returns:
+        np.ndarray: LBP特徴量の一次元配列。
+
+    Raises:
+        IOError: 画像ファイルの読み込みに失敗した場合に発生。
+    """
+    def create_features(self):
+        features = {}
+        names_correspondence = {}
+
+        for i in tqdm(range(len(self.image_paths)), desc="LBP for Green"):
+            path = self.image_paths[i]
+            image_name = os.path.basename(path)
+
+            try:
+                # 画像を読み込み、グレースケールに変換
+                image = self.load_image(path)
+                converted_image = image[:, :, 1]
+
+                # LBP特徴量を計算
+                points, radius = 16, 2
+                lbp = feature.local_binary_pattern(converted_image, points, radius, method="uniform")
+
+                # ヒストグラムを計算
+                hist, _ = np.histogram(lbp.ravel(), bins=points+2, range=(0, points+2), density=True)
+
+                features[str(i).zfill(6)] = hist
+                names_correspondence[str(i).zfill(6)] = image_name
+            except Exception as e:
+                print(f"Error processing image {image_name}: {e}")
+                continue
+
+        new_df = pd.DataFrame(features)
+        self.overall = pd.concat([self.overall, new_df], ignore_index=True)
+        self.create_memo("Convert an image to G component, compute Local Binary Patterns, and then flatten them into a one-dimensional array.")
+        self.create_names_correspondence(names_correspondence)
+
+
+class LbpBlue(feather.Feather):
+    """
+    画像を読み込み、B成分に変換後、Local Binary Pattern 特徴量を計算する。
+
+    Args:
+        image_path (str): 画像のファイルパス。
+
+    Returns:
+        np.ndarray: LBP特徴量の一次元配列。
+
+    Raises:
+        IOError: 画像ファイルの読み込みに失敗した場合に発生。
+    """
+    def create_features(self):
+        features = {}
+        names_correspondence = {}
+
+        for i in tqdm(range(len(self.image_paths)), desc="LBP for Blue"):
+            path = self.image_paths[i]
+            image_name = os.path.basename(path)
+
+            try:
+                # 画像を読み込み、グレースケールに変換
+                image = self.load_image(path)
+                converted_image = image[:, :, 0]
+
+                # LBP特徴量を計算
+                points, radius = 16, 2
+                lbp = feature.local_binary_pattern(converted_image, points, radius, method="uniform")
+
+                # ヒストグラムを計算
+                hist, _ = np.histogram(lbp.ravel(), bins=points+2, range=(0, points+2), density=True)
+
+                features[str(i).zfill(6)] = hist
+                names_correspondence[str(i).zfill(6)] = image_name
+            except Exception as e:
+                print(f"Error processing image {image_name}: {e}")
+                continue
+
+        new_df = pd.DataFrame(features)
+        self.overall = pd.concat([self.overall, new_df], ignore_index=True)
+        self.create_memo("Convert an image to B component, compute Local Binary Patterns, and then flatten them into a one-dimensional array.")
+        self.create_names_correspondence(names_correspondence)
+
+
+class LbpHue(feather.Feather):
+    """
+    画像を読み込み、H成分に変換後、Local Binary Pattern 特徴量を計算する。
+
+    Args:
+        image_path (str): 画像のファイルパス。
+
+    Returns:
+        np.ndarray: LBP特徴量の一次元配列。
+
+    Raises:
+        IOError: 画像ファイルの読み込みに失敗した場合に発生。
+    """
+    def create_features(self):
+        features = {}
+        names_correspondence = {}
+
+        for i in tqdm(range(len(self.image_paths)), desc="LBP for Hue"):
+            path = self.image_paths[i]
+            image_name = os.path.basename(path)
+
+            try:
+                # 画像を読み込み、グレースケールに変換
+                image = self.load_image(path)
+                image = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+                converted_image = image[:, :, 0]
+
+                # LBP特徴量を計算
+                points, radius = 16, 2
+                lbp = feature.local_binary_pattern(converted_image, points, radius, method="uniform")
+
+                # ヒストグラムを計算
+                hist, _ = np.histogram(lbp.ravel(), bins=points+2, range=(0, points+2), density=True)
+
+                features[str(i).zfill(6)] = hist
+                names_correspondence[str(i).zfill(6)] = image_name
+            except Exception as e:
+                print(f"Error processing image {image_name}: {e}")
+                continue
+
+        new_df = pd.DataFrame(features)
+        self.overall = pd.concat([self.overall, new_df], ignore_index=True)
+        self.create_memo("Convert an image to H component, compute Local Binary Patterns, and then flatten them into a one-dimensional array.")
+        self.create_names_correspondence(names_correspondence)
+
+
+class LbpSaturation(feather.Feather):
+    """
+    画像を読み込み、H成分に変換後、Local Binary Pattern 特徴量を計算する。
+
+    Args:
+        image_path (str): 画像のファイルパス。
+
+    Returns:
+        np.ndarray: LBP特徴量の一次元配列。
+
+    Raises:
+        IOError: 画像ファイルの読み込みに失敗した場合に発生。
+    """
+    def create_features(self):
+        features = {}
+        names_correspondence = {}
+
+        for i in tqdm(range(len(self.image_paths)), desc="LBP for Saturation"):
+            path = self.image_paths[i]
+            image_name = os.path.basename(path)
+
+            try:
+                # 画像を読み込み、グレースケールに変換
+                image = self.load_image(path)
+                image = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+                converted_image = image[:, :, 1]
+
+                # LBP特徴量を計算
+                points, radius = 16, 2
+                lbp = feature.local_binary_pattern(converted_image, points, radius, method="uniform")
+
+                # ヒストグラムを計算
+                hist, _ = np.histogram(lbp.ravel(), bins=points+2, range=(0, points+2), density=True)
+
+                features[str(i).zfill(6)] = hist
+                names_correspondence[str(i).zfill(6)] = image_name
+            except Exception as e:
+                print(f"Error processing image {image_name}: {e}")
+                continue
+
+        new_df = pd.DataFrame(features)
+        self.overall = pd.concat([self.overall, new_df], ignore_index=True)
+        self.create_memo("Convert an image to S component, compute Local Binary Patterns, and then flatten them into a one-dimensional array.")
+        self.create_names_correspondence(names_correspondence)
+
+
+class LbpValue(feather.Feather):
+    """
+    画像を読み込み、H成分に変換後、Local Binary Pattern 特徴量を計算する。
+
+    Args:
+        image_path (str): 画像のファイルパス。
+
+    Returns:
+        np.ndarray: LBP特徴量の一次元配列。
+
+    Raises:
+        IOError: 画像ファイルの読み込みに失敗した場合に発生。
+    """
+    def create_features(self):
+        features = {}
+        names_correspondence = {}
+
+        for i in tqdm(range(len(self.image_paths)), desc="LBP for Value"):
+            path = self.image_paths[i]
+            image_name = os.path.basename(path)
+
+            try:
+                # 画像を読み込み、グレースケールに変換
+                image = self.load_image(path)
+                image = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+                converted_image = image[:, :, 2]
+
+                # LBP特徴量を計算
+                points, radius = 16, 2
+                lbp = feature.local_binary_pattern(converted_image, points, radius, method="uniform")
+
+                # ヒストグラムを計算
+                hist, _ = np.histogram(lbp.ravel(), bins=points+2, range=(0, points+2), density=True)
+
+                features[str(i).zfill(6)] = hist
+                names_correspondence[str(i).zfill(6)] = image_name
+            except Exception as e:
+                print(f"Error processing image {image_name}: {e}")
+                continue
+
+        new_df = pd.DataFrame(features)
+        self.overall = pd.concat([self.overall, new_df], ignore_index=True)
+        self.create_memo("Convert an image to V component, compute Local Binary Patterns, and then flatten them into a one-dimensional array.")
+        self.create_names_correspondence(names_correspondence)

@@ -20,7 +20,7 @@ class Main():
         #Dataset#########################################################################
 
         # 処理項目の選択
-        self.is_select_class_index = "class2"
+        self.is_select_class_index = "class3"
 
         # generationg_imageのオプション
         self.augmentation_option = 1 # 0: shift and rotate 1:rotate

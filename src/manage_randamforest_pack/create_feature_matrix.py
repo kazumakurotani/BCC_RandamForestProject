@@ -1,15 +1,23 @@
 import pandas as pd
 from tqdm import tqdm
 import shutil
+import os
 
 def create_feature_matrix() -> None:
     """
     アクティブな特徴量ファイルを読み込み、連結してfeather形式で保存する。
     """
     active_features = {
-        "grayscale": "feature\\overall\\grayscale_feature_overall.ftr"
+        # "grayscale": "feature\\overall\\grayscale_feature.ftr",
+        # "lbp_gray": "feature\\overall\\lbp_gray.ftr",
+        # "lbp_red": "feature\\overall\\lbp_red.ftr",
+        # "lbp_green": "feature\\overall\\lbp_blue.ftr",
+        # "lbp_blue": "feature\\overall\\lbp_green.ftr",
+        "lbp_hue": "feature\\overall\\lbp_hue.ftr",
+        "lbp_saturation": "feature\\overall\\lbp_saturation.ftr",
+        "lbp_value": "feature\\overall\\lbp_value.ftr"
     }
-    labels_path = "feature\\overall\\labels_overall.ftr"
+    labels_path = "feature\\overall\\labels.ftr"
 
     # feature_matrixの読み込み
     feature_matrix = _load_features(active_features)
@@ -49,6 +57,8 @@ def _load_features(features: dict) -> pd.DataFrame:
 
     # 特徴量の範囲をCSVファイルに保存
     feature_ranges_df = pd.DataFrame(feature_ranges, columns=['Start', 'End', 'FeatureName'])
+    if os.path.isdir("feature\\feature_matrix") is False:
+        os.makedirs("feature\\feature_matrix")
     feature_ranges_df.to_csv('feature\\feature_matrix\\feature_ranges.csv', index=False)
 
     return concatenated_feature_matrix

@@ -44,6 +44,7 @@ def preprocess() -> None:
 
             cv2.imwrite(output_path, resized_image)
 
+    _remove_empty_directories(output_root_path)
 
 def _create_output_directories(output_root_path, input_path):
     # ディレクトリ内のデータを全削除
@@ -65,11 +66,24 @@ def _get_image_paths(input_dir_path: str) -> Dict[str, List[str]]:
         Dict[str, List[str]]: ラベルごとの画像ファイルのパスを含むディクショナリ。
             キーはラベルディレクトリの名前で、値はそのラベルに関連付けられた画像ファイルのパスのリストです。
     """
+    extracted_cells = {
+        "多染性赤芽球": "Polychromatic erythroblast",
+        "リンパ球": "Lymphocyte",
+        "骨髄球": "Myelocyte",
+        "後骨髄球": "Metamyelocyte",
+        "桿状核球": "Stab cell",
+        "分葉核球": "Segmented cell",
+        "前骨髄球": "Premyelocyte",
+        "好酸球": "Eosinophil",
+        "正染性赤芽球": "Orthochromatic erythroblast",
+        "塩基性赤芽球": "Basophilic erythroblast"
+    }
+
     # 格納用変数
     image_paths = {}
 
     # datasetのパスを取得
-    for label_dir in os.listdir(input_dir_path):
+    for label_dir in extracted_cells.values():
         label_dir_path = os.path.join(input_dir_path, label_dir)
 
         label_dir_image_paths = [
@@ -79,3 +93,21 @@ def _get_image_paths(input_dir_path: str) -> Dict[str, List[str]]:
         image_paths[label_dir] = label_dir_image_paths
 
     return image_paths
+
+def _remove_empty_directories(output_root_dir_path: str) -> None:
+    """
+    指定されたディレクトリ内の空のディレクトリを削除する。
+
+    Args:
+    directory (str): 走査を開始するディレクトリのパス。
+
+    Returns:
+    None
+    """
+    for root, dirs, files in os.walk(output_root_dir_path, topdown=False):
+        for dir in dirs:
+            dir_path = os.path.join(root, dir)
+
+            # ディレクトリが空かどうかを確認
+            if not os.listdir(dir_path):
+                os.rmdir(dir_path)

@@ -1,8 +1,6 @@
-Basophil(immature): 0
-Basophil(mature): 0
+Basophil: 0
 Basophilic erythroblast: 75
-Eosinophil(immature): 8
-Eosinophil(mature): 35
+Eosinophil: 43
 Lymphocyte: 319
 Megakaryocyte: 19
 Metamyelocyte: 189
@@ -10,13 +8,12 @@ Monocyte: 432
 Myelocyte: 186
 Neutrophil: 45
 Orthochromatic erythroblast: 232
-Plasma_cell: 4
+Plasma cell: 4
 Polychromatic erythroblast: 390
 Premyelocyte: 152
 Proerythroblast: 73
 Segmented cell: 345
-Stab_cell: 254
+Stab cell: 254
 Undeterminable: 242
 合計ファイル数: 3000
-空のディレクトリを削除しました: data\raw\labeled\Basophil(immature)
-空のディレクトリを削除しました: data\raw\labeled\Basophil(mature)
+空のディレクトリを削除しました: data\raw\labeled\Basophil
