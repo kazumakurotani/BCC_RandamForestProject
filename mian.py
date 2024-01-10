@@ -15,7 +15,7 @@ class Main():
         }
 
         # 処理内容の選択
-        self.is_select_option = 0
+        self.is_select_option = 999
 
         #Dataset#########################################################################
 
