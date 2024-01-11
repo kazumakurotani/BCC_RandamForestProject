@@ -11,6 +11,7 @@ class Main():
             3: "feature_engineering",
             4: "create_feature_matrix",
             5: "train_and_evaluate",
+            6: "tune_random_forest_hyperparameters",
             999: "initializing"
         }
 
@@ -64,6 +65,10 @@ class Main():
         print("Start Training and Evaluating")
         self.rfm.manage_randamforest("train_and_evaluate")
 
+    def tune_random_forest_hyperparameters(self):
+        print("Start Tuning Random Forest Hyperparameters")
+        self.rfm.manage_randamforest("tune_random_forest_hyperparameters")
+
     def initializing_dataset(self):
         print("Initializing Dataset")
         self.dm.manage_dataset("initializing")
@@ -84,6 +89,8 @@ class Main():
             self.create_feature_matrix()
         elif self.is_select_option == 5:
             self.train_and_evaluate()
+        elif self.is_select_option == 6:
+            self.tune_random_forest_hyperparameters()
         elif self.is_select_option == 999:
             self.initializing_dataset()
         self.message()

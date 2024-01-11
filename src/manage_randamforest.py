@@ -1,4 +1,6 @@
-from src.manage_randamforest_pack import create_feature_matrix, train_and_evaluate, plot_results
+from src.manage_randamforest_pack import create_feature_matrix
+from src.manage_randamforest_pack import train_and_evaluate
+from src.manage_randamforest_pack import hyperparameter_tuning
 
 
 class RandamForestManager:
@@ -11,5 +13,7 @@ class RandamForestManager:
             return create_feature_matrix.create_feature_matrix(*args, **kwargs)
         elif operation == "train_and_evaluate":
             return train_and_evaluate.train_and_evaluate(*args, **kwargs)
+        elif operation == "tune_random_forest_hyperparameters":
+            return hyperparameter_tuning.tune_random_forest_hyperparameters(*args, **kwargs)
         else:
             raise ValueError(f"Unsupported operation: {operation}")
