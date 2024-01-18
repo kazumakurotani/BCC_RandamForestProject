@@ -1,19 +1,19 @@
 Basophil: 0
-Basophilic erythroblast: 75
+Basophilic erythroblast: 77
 Eosinophil: 43
-Lymphocyte: 319
+Lymphocyte: 338
 Megakaryocyte: 19
-Metamyelocyte: 189
-Monocyte: 432
-Myelocyte: 186
+Metamyelocyte: 195
+Monocyte: 471
+Myelocyte: 192
 Neutrophil: 45
-Orthochromatic erythroblast: 232
+Orthochromatic erythroblast: 235
 Plasma cell: 4
-Polychromatic erythroblast: 390
-Premyelocyte: 152
+Polychromatic erythroblast: 402
+Premyelocyte: 157
 Proerythroblast: 73
-Segmented cell: 345
-Stab cell: 254
-Undeterminable: 242
-合計ファイル数: 3000
+Segmented cell: 361
+Stab cell: 259
+Undeterminable: 243
+合計ファイル数: 3114
 空のディレクトリを削除しました: data\raw\labeled\Basophil

@@ -298,6 +298,14 @@ Basophilic erythroblast_03000, 01, base
 Basophilic erythroblast_03000, 02, rotate: 90.0
 Basophilic erythroblast_03000, 03, rotate: 180.0
 Basophilic erythroblast_03000, 04, rotate: 270.0
+Basophilic erythroblast_03026, 01, base
+Basophilic erythroblast_03026, 02, rotate: 90.0
+Basophilic erythroblast_03026, 03, rotate: 180.0
+Basophilic erythroblast_03026, 04, rotate: 270.0
+Basophilic erythroblast_03100, 01, base
+Basophilic erythroblast_03100, 02, rotate: 90.0
+Basophilic erythroblast_03100, 03, rotate: 180.0
+Basophilic erythroblast_03100, 04, rotate: 270.0
 Eosinophil_00048, 01, base
 Eosinophil_00048, 02, rotate: 90.0
 Eosinophil_00048, 03, rotate: 180.0
@@ -1746,6 +1754,82 @@ Lymphocyte_02984, 01, base
 Lymphocyte_02984, 02, rotate: 90.0
 Lymphocyte_02984, 03, rotate: 180.0
 Lymphocyte_02984, 04, rotate: 270.0
+Lymphocyte_03033, 01, base
+Lymphocyte_03033, 02, rotate: 90.0
+Lymphocyte_03033, 03, rotate: 180.0
+Lymphocyte_03033, 04, rotate: 270.0
+Lymphocyte_03037, 01, base
+Lymphocyte_03037, 02, rotate: 90.0
+Lymphocyte_03037, 03, rotate: 180.0
+Lymphocyte_03037, 04, rotate: 270.0
+Lymphocyte_03038, 01, base
+Lymphocyte_03038, 02, rotate: 90.0
+Lymphocyte_03038, 03, rotate: 180.0
+Lymphocyte_03038, 04, rotate: 270.0
+Lymphocyte_03043, 01, base
+Lymphocyte_03043, 02, rotate: 90.0
+Lymphocyte_03043, 03, rotate: 180.0
+Lymphocyte_03043, 04, rotate: 270.0
+Lymphocyte_03044, 01, base
+Lymphocyte_03044, 02, rotate: 90.0
+Lymphocyte_03044, 03, rotate: 180.0
+Lymphocyte_03044, 04, rotate: 270.0
+Lymphocyte_03046, 01, base
+Lymphocyte_03046, 02, rotate: 90.0
+Lymphocyte_03046, 03, rotate: 180.0
+Lymphocyte_03046, 04, rotate: 270.0
+Lymphocyte_03048, 01, base
+Lymphocyte_03048, 02, rotate: 90.0
+Lymphocyte_03048, 03, rotate: 180.0
+Lymphocyte_03048, 04, rotate: 270.0
+Lymphocyte_03066, 01, base
+Lymphocyte_03066, 02, rotate: 90.0
+Lymphocyte_03066, 03, rotate: 180.0
+Lymphocyte_03066, 04, rotate: 270.0
+Lymphocyte_03067, 01, base
+Lymphocyte_03067, 02, rotate: 90.0
+Lymphocyte_03067, 03, rotate: 180.0
+Lymphocyte_03067, 04, rotate: 270.0
+Lymphocyte_03073, 01, base
+Lymphocyte_03073, 02, rotate: 90.0
+Lymphocyte_03073, 03, rotate: 180.0
+Lymphocyte_03073, 04, rotate: 270.0
+Lymphocyte_03081, 01, base
+Lymphocyte_03081, 02, rotate: 90.0
+Lymphocyte_03081, 03, rotate: 180.0
+Lymphocyte_03081, 04, rotate: 270.0
+Lymphocyte_03084, 01, base
+Lymphocyte_03084, 02, rotate: 90.0
+Lymphocyte_03084, 03, rotate: 180.0
+Lymphocyte_03084, 04, rotate: 270.0
+Lymphocyte_03096, 01, base
+Lymphocyte_03096, 02, rotate: 90.0
+Lymphocyte_03096, 03, rotate: 180.0
+Lymphocyte_03096, 04, rotate: 270.0
+Lymphocyte_03103, 01, base
+Lymphocyte_03103, 02, rotate: 90.0
+Lymphocyte_03103, 03, rotate: 180.0
+Lymphocyte_03103, 04, rotate: 270.0
+Lymphocyte_03104, 01, base
+Lymphocyte_03104, 02, rotate: 90.0
+Lymphocyte_03104, 03, rotate: 180.0
+Lymphocyte_03104, 04, rotate: 270.0
+Lymphocyte_03105, 01, base
+Lymphocyte_03105, 02, rotate: 90.0
+Lymphocyte_03105, 03, rotate: 180.0
+Lymphocyte_03105, 04, rotate: 270.0
+Lymphocyte_03106, 01, base
+Lymphocyte_03106, 02, rotate: 90.0
+Lymphocyte_03106, 03, rotate: 180.0
+Lymphocyte_03106, 04, rotate: 270.0
+Lymphocyte_03107, 01, base
+Lymphocyte_03107, 02, rotate: 90.0
+Lymphocyte_03107, 03, rotate: 180.0
+Lymphocyte_03107, 04, rotate: 270.0
+Lymphocyte_03113, 01, base
+Lymphocyte_03113, 02, rotate: 90.0
+Lymphocyte_03113, 03, rotate: 180.0
+Lymphocyte_03113, 04, rotate: 270.0
 Megakaryocyte_01527, 01, base
 Megakaryocyte_01527, 02, rotate: 90.0
 Megakaryocyte_01527, 03, rotate: 180.0
@@ -2578,6 +2662,30 @@ Metamyelocyte_02968, 01, base
 Metamyelocyte_02968, 02, rotate: 90.0
 Metamyelocyte_02968, 03, rotate: 180.0
 Metamyelocyte_02968, 04, rotate: 270.0
+Metamyelocyte_03024, 01, base
+Metamyelocyte_03024, 02, rotate: 90.0
+Metamyelocyte_03024, 03, rotate: 180.0
+Metamyelocyte_03024, 04, rotate: 270.0
+Metamyelocyte_03055, 01, base
+Metamyelocyte_03055, 02, rotate: 90.0
+Metamyelocyte_03055, 03, rotate: 180.0
+Metamyelocyte_03055, 04, rotate: 270.0
+Metamyelocyte_03060, 01, base
+Metamyelocyte_03060, 02, rotate: 90.0
+Metamyelocyte_03060, 03, rotate: 180.0
+Metamyelocyte_03060, 04, rotate: 270.0
+Metamyelocyte_03072, 01, base
+Metamyelocyte_03072, 02, rotate: 90.0
+Metamyelocyte_03072, 03, rotate: 180.0
+Metamyelocyte_03072, 04, rotate: 270.0
+Metamyelocyte_03086, 01, base
+Metamyelocyte_03086, 02, rotate: 90.0
+Metamyelocyte_03086, 03, rotate: 180.0
+Metamyelocyte_03086, 04, rotate: 270.0
+Metamyelocyte_03090, 01, base
+Metamyelocyte_03090, 02, rotate: 90.0
+Metamyelocyte_03090, 03, rotate: 180.0
+Metamyelocyte_03090, 04, rotate: 270.0
 Monocyte_00008, 01, base
 Monocyte_00008, 02, rotate: 90.0
 Monocyte_00008, 03, rotate: 180.0
@@ -4306,6 +4414,162 @@ Monocyte_02997, 01, base
 Monocyte_02997, 02, rotate: 90.0
 Monocyte_02997, 03, rotate: 180.0
 Monocyte_02997, 04, rotate: 270.0
+Monocyte_03001, 01, base
+Monocyte_03001, 02, rotate: 90.0
+Monocyte_03001, 03, rotate: 180.0
+Monocyte_03001, 04, rotate: 270.0
+Monocyte_03003, 01, base
+Monocyte_03003, 02, rotate: 90.0
+Monocyte_03003, 03, rotate: 180.0
+Monocyte_03003, 04, rotate: 270.0
+Monocyte_03005, 01, base
+Monocyte_03005, 02, rotate: 90.0
+Monocyte_03005, 03, rotate: 180.0
+Monocyte_03005, 04, rotate: 270.0
+Monocyte_03006, 01, base
+Monocyte_03006, 02, rotate: 90.0
+Monocyte_03006, 03, rotate: 180.0
+Monocyte_03006, 04, rotate: 270.0
+Monocyte_03007, 01, base
+Monocyte_03007, 02, rotate: 90.0
+Monocyte_03007, 03, rotate: 180.0
+Monocyte_03007, 04, rotate: 270.0
+Monocyte_03009, 01, base
+Monocyte_03009, 02, rotate: 90.0
+Monocyte_03009, 03, rotate: 180.0
+Monocyte_03009, 04, rotate: 270.0
+Monocyte_03010, 01, base
+Monocyte_03010, 02, rotate: 90.0
+Monocyte_03010, 03, rotate: 180.0
+Monocyte_03010, 04, rotate: 270.0
+Monocyte_03012, 01, base
+Monocyte_03012, 02, rotate: 90.0
+Monocyte_03012, 03, rotate: 180.0
+Monocyte_03012, 04, rotate: 270.0
+Monocyte_03014, 01, base
+Monocyte_03014, 02, rotate: 90.0
+Monocyte_03014, 03, rotate: 180.0
+Monocyte_03014, 04, rotate: 270.0
+Monocyte_03016, 01, base
+Monocyte_03016, 02, rotate: 90.0
+Monocyte_03016, 03, rotate: 180.0
+Monocyte_03016, 04, rotate: 270.0
+Monocyte_03017, 01, base
+Monocyte_03017, 02, rotate: 90.0
+Monocyte_03017, 03, rotate: 180.0
+Monocyte_03017, 04, rotate: 270.0
+Monocyte_03018, 01, base
+Monocyte_03018, 02, rotate: 90.0
+Monocyte_03018, 03, rotate: 180.0
+Monocyte_03018, 04, rotate: 270.0
+Monocyte_03021, 01, base
+Monocyte_03021, 02, rotate: 90.0
+Monocyte_03021, 03, rotate: 180.0
+Monocyte_03021, 04, rotate: 270.0
+Monocyte_03025, 01, base
+Monocyte_03025, 02, rotate: 90.0
+Monocyte_03025, 03, rotate: 180.0
+Monocyte_03025, 04, rotate: 270.0
+Monocyte_03027, 01, base
+Monocyte_03027, 02, rotate: 90.0
+Monocyte_03027, 03, rotate: 180.0
+Monocyte_03027, 04, rotate: 270.0
+Monocyte_03028, 01, base
+Monocyte_03028, 02, rotate: 90.0
+Monocyte_03028, 03, rotate: 180.0
+Monocyte_03028, 04, rotate: 270.0
+Monocyte_03029, 01, base
+Monocyte_03029, 02, rotate: 90.0
+Monocyte_03029, 03, rotate: 180.0
+Monocyte_03029, 04, rotate: 270.0
+Monocyte_03031, 01, base
+Monocyte_03031, 02, rotate: 90.0
+Monocyte_03031, 03, rotate: 180.0
+Monocyte_03031, 04, rotate: 270.0
+Monocyte_03034, 01, base
+Monocyte_03034, 02, rotate: 90.0
+Monocyte_03034, 03, rotate: 180.0
+Monocyte_03034, 04, rotate: 270.0
+Monocyte_03039, 01, base
+Monocyte_03039, 02, rotate: 90.0
+Monocyte_03039, 03, rotate: 180.0
+Monocyte_03039, 04, rotate: 270.0
+Monocyte_03045, 01, base
+Monocyte_03045, 02, rotate: 90.0
+Monocyte_03045, 03, rotate: 180.0
+Monocyte_03045, 04, rotate: 270.0
+Monocyte_03050, 01, base
+Monocyte_03050, 02, rotate: 90.0
+Monocyte_03050, 03, rotate: 180.0
+Monocyte_03050, 04, rotate: 270.0
+Monocyte_03051, 01, base
+Monocyte_03051, 02, rotate: 90.0
+Monocyte_03051, 03, rotate: 180.0
+Monocyte_03051, 04, rotate: 270.0
+Monocyte_03056, 01, base
+Monocyte_03056, 02, rotate: 90.0
+Monocyte_03056, 03, rotate: 180.0
+Monocyte_03056, 04, rotate: 270.0
+Monocyte_03063, 01, base
+Monocyte_03063, 02, rotate: 90.0
+Monocyte_03063, 03, rotate: 180.0
+Monocyte_03063, 04, rotate: 270.0
+Monocyte_03065, 01, base
+Monocyte_03065, 02, rotate: 90.0
+Monocyte_03065, 03, rotate: 180.0
+Monocyte_03065, 04, rotate: 270.0
+Monocyte_03068, 01, base
+Monocyte_03068, 02, rotate: 90.0
+Monocyte_03068, 03, rotate: 180.0
+Monocyte_03068, 04, rotate: 270.0
+Monocyte_03069, 01, base
+Monocyte_03069, 02, rotate: 90.0
+Monocyte_03069, 03, rotate: 180.0
+Monocyte_03069, 04, rotate: 270.0
+Monocyte_03076, 01, base
+Monocyte_03076, 02, rotate: 90.0
+Monocyte_03076, 03, rotate: 180.0
+Monocyte_03076, 04, rotate: 270.0
+Monocyte_03079, 01, base
+Monocyte_03079, 02, rotate: 90.0
+Monocyte_03079, 03, rotate: 180.0
+Monocyte_03079, 04, rotate: 270.0
+Monocyte_03088, 01, base
+Monocyte_03088, 02, rotate: 90.0
+Monocyte_03088, 03, rotate: 180.0
+Monocyte_03088, 04, rotate: 270.0
+Monocyte_03092, 01, base
+Monocyte_03092, 02, rotate: 90.0
+Monocyte_03092, 03, rotate: 180.0
+Monocyte_03092, 04, rotate: 270.0
+Monocyte_03094, 01, base
+Monocyte_03094, 02, rotate: 90.0
+Monocyte_03094, 03, rotate: 180.0
+Monocyte_03094, 04, rotate: 270.0
+Monocyte_03095, 01, base
+Monocyte_03095, 02, rotate: 90.0
+Monocyte_03095, 03, rotate: 180.0
+Monocyte_03095, 04, rotate: 270.0
+Monocyte_03101, 01, base
+Monocyte_03101, 02, rotate: 90.0
+Monocyte_03101, 03, rotate: 180.0
+Monocyte_03101, 04, rotate: 270.0
+Monocyte_03108, 01, base
+Monocyte_03108, 02, rotate: 90.0
+Monocyte_03108, 03, rotate: 180.0
+Monocyte_03108, 04, rotate: 270.0
+Monocyte_03109, 01, base
+Monocyte_03109, 02, rotate: 90.0
+Monocyte_03109, 03, rotate: 180.0
+Monocyte_03109, 04, rotate: 270.0
+Monocyte_03111, 01, base
+Monocyte_03111, 02, rotate: 90.0
+Monocyte_03111, 03, rotate: 180.0
+Monocyte_03111, 04, rotate: 270.0
+Monocyte_03114, 01, base
+Monocyte_03114, 02, rotate: 90.0
+Monocyte_03114, 03, rotate: 180.0
+Monocyte_03114, 04, rotate: 270.0
 Myelocyte_00011, 01, base
 Myelocyte_00011, 02, rotate: 90.0
 Myelocyte_00011, 03, rotate: 180.0
@@ -5050,6 +5314,30 @@ Myelocyte_02993, 01, base
 Myelocyte_02993, 02, rotate: 90.0
 Myelocyte_02993, 03, rotate: 180.0
 Myelocyte_02993, 04, rotate: 270.0
+Myelocyte_03054, 01, base
+Myelocyte_03054, 02, rotate: 90.0
+Myelocyte_03054, 03, rotate: 180.0
+Myelocyte_03054, 04, rotate: 270.0
+Myelocyte_03061, 01, base
+Myelocyte_03061, 02, rotate: 90.0
+Myelocyte_03061, 03, rotate: 180.0
+Myelocyte_03061, 04, rotate: 270.0
+Myelocyte_03075, 01, base
+Myelocyte_03075, 02, rotate: 90.0
+Myelocyte_03075, 03, rotate: 180.0
+Myelocyte_03075, 04, rotate: 270.0
+Myelocyte_03085, 01, base
+Myelocyte_03085, 02, rotate: 90.0
+Myelocyte_03085, 03, rotate: 180.0
+Myelocyte_03085, 04, rotate: 270.0
+Myelocyte_03093, 01, base
+Myelocyte_03093, 02, rotate: 90.0
+Myelocyte_03093, 03, rotate: 180.0
+Myelocyte_03093, 04, rotate: 270.0
+Myelocyte_03112, 01, base
+Myelocyte_03112, 02, rotate: 90.0
+Myelocyte_03112, 03, rotate: 180.0
+Myelocyte_03112, 04, rotate: 270.0
 Neutrophil_00004, 01, base
 Neutrophil_00004, 02, rotate: 90.0
 Neutrophil_00004, 03, rotate: 180.0
@@ -6158,6 +6446,18 @@ Orthochromatic erythroblast_02965, 01, base
 Orthochromatic erythroblast_02965, 02, rotate: 90.0
 Orthochromatic erythroblast_02965, 03, rotate: 180.0
 Orthochromatic erythroblast_02965, 04, rotate: 270.0
+Orthochromatic erythroblast_03032, 01, base
+Orthochromatic erythroblast_03032, 02, rotate: 90.0
+Orthochromatic erythroblast_03032, 03, rotate: 180.0
+Orthochromatic erythroblast_03032, 04, rotate: 270.0
+Orthochromatic erythroblast_03082, 01, base
+Orthochromatic erythroblast_03082, 02, rotate: 90.0
+Orthochromatic erythroblast_03082, 03, rotate: 180.0
+Orthochromatic erythroblast_03082, 04, rotate: 270.0
+Orthochromatic erythroblast_03091, 01, base
+Orthochromatic erythroblast_03091, 02, rotate: 90.0
+Orthochromatic erythroblast_03091, 03, rotate: 180.0
+Orthochromatic erythroblast_03091, 04, rotate: 270.0
 Plasma cell_00024, 01, base
 Plasma cell_00024, 02, rotate: 90.0
 Plasma cell_00024, 03, rotate: 180.0
@@ -7734,6 +8034,54 @@ Polychromatic erythroblast_02999, 01, base
 Polychromatic erythroblast_02999, 02, rotate: 90.0
 Polychromatic erythroblast_02999, 03, rotate: 180.0
 Polychromatic erythroblast_02999, 04, rotate: 270.0
+Polychromatic erythroblast_03002, 01, base
+Polychromatic erythroblast_03002, 02, rotate: 90.0
+Polychromatic erythroblast_03002, 03, rotate: 180.0
+Polychromatic erythroblast_03002, 04, rotate: 270.0
+Polychromatic erythroblast_03008, 01, base
+Polychromatic erythroblast_03008, 02, rotate: 90.0
+Polychromatic erythroblast_03008, 03, rotate: 180.0
+Polychromatic erythroblast_03008, 04, rotate: 270.0
+Polychromatic erythroblast_03011, 01, base
+Polychromatic erythroblast_03011, 02, rotate: 90.0
+Polychromatic erythroblast_03011, 03, rotate: 180.0
+Polychromatic erythroblast_03011, 04, rotate: 270.0
+Polychromatic erythroblast_03013, 01, base
+Polychromatic erythroblast_03013, 02, rotate: 90.0
+Polychromatic erythroblast_03013, 03, rotate: 180.0
+Polychromatic erythroblast_03013, 04, rotate: 270.0
+Polychromatic erythroblast_03052, 01, base
+Polychromatic erythroblast_03052, 02, rotate: 90.0
+Polychromatic erythroblast_03052, 03, rotate: 180.0
+Polychromatic erythroblast_03052, 04, rotate: 270.0
+Polychromatic erythroblast_03057, 01, base
+Polychromatic erythroblast_03057, 02, rotate: 90.0
+Polychromatic erythroblast_03057, 03, rotate: 180.0
+Polychromatic erythroblast_03057, 04, rotate: 270.0
+Polychromatic erythroblast_03078, 01, base
+Polychromatic erythroblast_03078, 02, rotate: 90.0
+Polychromatic erythroblast_03078, 03, rotate: 180.0
+Polychromatic erythroblast_03078, 04, rotate: 270.0
+Polychromatic erythroblast_03080, 01, base
+Polychromatic erythroblast_03080, 02, rotate: 90.0
+Polychromatic erythroblast_03080, 03, rotate: 180.0
+Polychromatic erythroblast_03080, 04, rotate: 270.0
+Polychromatic erythroblast_03083, 01, base
+Polychromatic erythroblast_03083, 02, rotate: 90.0
+Polychromatic erythroblast_03083, 03, rotate: 180.0
+Polychromatic erythroblast_03083, 04, rotate: 270.0
+Polychromatic erythroblast_03089, 01, base
+Polychromatic erythroblast_03089, 02, rotate: 90.0
+Polychromatic erythroblast_03089, 03, rotate: 180.0
+Polychromatic erythroblast_03089, 04, rotate: 270.0
+Polychromatic erythroblast_03097, 01, base
+Polychromatic erythroblast_03097, 02, rotate: 90.0
+Polychromatic erythroblast_03097, 03, rotate: 180.0
+Polychromatic erythroblast_03097, 04, rotate: 270.0
+Polychromatic erythroblast_03099, 01, base
+Polychromatic erythroblast_03099, 02, rotate: 90.0
+Polychromatic erythroblast_03099, 03, rotate: 180.0
+Polychromatic erythroblast_03099, 04, rotate: 270.0
 Premyelocyte_00002, 01, base
 Premyelocyte_00002, 02, rotate: 90.0
 Premyelocyte_00002, 03, rotate: 180.0
@@ -8342,6 +8690,26 @@ Premyelocyte_02990, 01, base
 Premyelocyte_02990, 02, rotate: 90.0
 Premyelocyte_02990, 03, rotate: 180.0
 Premyelocyte_02990, 04, rotate: 270.0
+Premyelocyte_03035, 01, base
+Premyelocyte_03035, 02, rotate: 90.0
+Premyelocyte_03035, 03, rotate: 180.0
+Premyelocyte_03035, 04, rotate: 270.0
+Premyelocyte_03036, 01, base
+Premyelocyte_03036, 02, rotate: 90.0
+Premyelocyte_03036, 03, rotate: 180.0
+Premyelocyte_03036, 04, rotate: 270.0
+Premyelocyte_03040, 01, base
+Premyelocyte_03040, 02, rotate: 90.0
+Premyelocyte_03040, 03, rotate: 180.0
+Premyelocyte_03040, 04, rotate: 270.0
+Premyelocyte_03049, 01, base
+Premyelocyte_03049, 02, rotate: 90.0
+Premyelocyte_03049, 03, rotate: 180.0
+Premyelocyte_03049, 04, rotate: 270.0
+Premyelocyte_03074, 01, base
+Premyelocyte_03074, 02, rotate: 90.0
+Premyelocyte_03074, 03, rotate: 180.0
+Premyelocyte_03074, 04, rotate: 270.0
 Proerythroblast_00016, 01, base
 Proerythroblast_00016, 02, rotate: 90.0
 Proerythroblast_00016, 03, rotate: 180.0
@@ -10014,6 +10382,70 @@ Segmented cell_02996, 01, base
 Segmented cell_02996, 02, rotate: 90.0
 Segmented cell_02996, 03, rotate: 180.0
 Segmented cell_02996, 04, rotate: 270.0
+Segmented cell_03004, 01, base
+Segmented cell_03004, 02, rotate: 90.0
+Segmented cell_03004, 03, rotate: 180.0
+Segmented cell_03004, 04, rotate: 270.0
+Segmented cell_03015, 01, base
+Segmented cell_03015, 02, rotate: 90.0
+Segmented cell_03015, 03, rotate: 180.0
+Segmented cell_03015, 04, rotate: 270.0
+Segmented cell_03022, 01, base
+Segmented cell_03022, 02, rotate: 90.0
+Segmented cell_03022, 03, rotate: 180.0
+Segmented cell_03022, 04, rotate: 270.0
+Segmented cell_03030, 01, base
+Segmented cell_03030, 02, rotate: 90.0
+Segmented cell_03030, 03, rotate: 180.0
+Segmented cell_03030, 04, rotate: 270.0
+Segmented cell_03041, 01, base
+Segmented cell_03041, 02, rotate: 90.0
+Segmented cell_03041, 03, rotate: 180.0
+Segmented cell_03041, 04, rotate: 270.0
+Segmented cell_03042, 01, base
+Segmented cell_03042, 02, rotate: 90.0
+Segmented cell_03042, 03, rotate: 180.0
+Segmented cell_03042, 04, rotate: 270.0
+Segmented cell_03047, 01, base
+Segmented cell_03047, 02, rotate: 90.0
+Segmented cell_03047, 03, rotate: 180.0
+Segmented cell_03047, 04, rotate: 270.0
+Segmented cell_03058, 01, base
+Segmented cell_03058, 02, rotate: 90.0
+Segmented cell_03058, 03, rotate: 180.0
+Segmented cell_03058, 04, rotate: 270.0
+Segmented cell_03059, 01, base
+Segmented cell_03059, 02, rotate: 90.0
+Segmented cell_03059, 03, rotate: 180.0
+Segmented cell_03059, 04, rotate: 270.0
+Segmented cell_03062, 01, base
+Segmented cell_03062, 02, rotate: 90.0
+Segmented cell_03062, 03, rotate: 180.0
+Segmented cell_03062, 04, rotate: 270.0
+Segmented cell_03064, 01, base
+Segmented cell_03064, 02, rotate: 90.0
+Segmented cell_03064, 03, rotate: 180.0
+Segmented cell_03064, 04, rotate: 270.0
+Segmented cell_03070, 01, base
+Segmented cell_03070, 02, rotate: 90.0
+Segmented cell_03070, 03, rotate: 180.0
+Segmented cell_03070, 04, rotate: 270.0
+Segmented cell_03071, 01, base
+Segmented cell_03071, 02, rotate: 90.0
+Segmented cell_03071, 03, rotate: 180.0
+Segmented cell_03071, 04, rotate: 270.0
+Segmented cell_03077, 01, base
+Segmented cell_03077, 02, rotate: 90.0
+Segmented cell_03077, 03, rotate: 180.0
+Segmented cell_03077, 04, rotate: 270.0
+Segmented cell_03087, 01, base
+Segmented cell_03087, 02, rotate: 90.0
+Segmented cell_03087, 03, rotate: 180.0
+Segmented cell_03087, 04, rotate: 270.0
+Segmented cell_03102, 01, base
+Segmented cell_03102, 02, rotate: 90.0
+Segmented cell_03102, 03, rotate: 180.0
+Segmented cell_03102, 04, rotate: 270.0
 Stab cell_00015, 01, base
 Stab cell_00015, 02, rotate: 90.0
 Stab cell_00015, 03, rotate: 180.0
@@ -11030,6 +11462,26 @@ Stab cell_02963, 01, base
 Stab cell_02963, 02, rotate: 90.0
 Stab cell_02963, 03, rotate: 180.0
 Stab cell_02963, 04, rotate: 270.0
+Stab cell_03019, 01, base
+Stab cell_03019, 02, rotate: 90.0
+Stab cell_03019, 03, rotate: 180.0
+Stab cell_03019, 04, rotate: 270.0
+Stab cell_03020, 01, base
+Stab cell_03020, 02, rotate: 90.0
+Stab cell_03020, 03, rotate: 180.0
+Stab cell_03020, 04, rotate: 270.0
+Stab cell_03023, 01, base
+Stab cell_03023, 02, rotate: 90.0
+Stab cell_03023, 03, rotate: 180.0
+Stab cell_03023, 04, rotate: 270.0
+Stab cell_03053, 01, base
+Stab cell_03053, 02, rotate: 90.0
+Stab cell_03053, 03, rotate: 180.0
+Stab cell_03053, 04, rotate: 270.0
+Stab cell_03098, 01, base
+Stab cell_03098, 02, rotate: 90.0
+Stab cell_03098, 03, rotate: 180.0
+Stab cell_03098, 04, rotate: 270.0
 Undeterminable_00020, 01, base
 Undeterminable_00020, 02, rotate: 90.0
 Undeterminable_00020, 03, rotate: 180.0
@@ -11998,3 +12450,7 @@ Undeterminable_02988, 01, base
 Undeterminable_02988, 02, rotate: 90.0
 Undeterminable_02988, 03, rotate: 180.0
 Undeterminable_02988, 04, rotate: 270.0
+Undeterminable_03110, 01, base
+Undeterminable_03110, 02, rotate: 90.0
+Undeterminable_03110, 03, rotate: 180.0
+Undeterminable_03110, 04, rotate: 270.0

@@ -77,6 +77,7 @@ def _get_image_paths(input_dir_path: str) -> Dict[str, List[str]]:
         "好酸球": "Eosinophil",
         "正染性赤芽球": "Orthochromatic erythroblast",
         "塩基性赤芽球": "Basophilic erythroblast"
+        # "判別不可能": "Undeterminable"
     }
 
     # 格納用変数

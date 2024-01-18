@@ -24,7 +24,7 @@ def train_and_evaluate():
     x_train, x_test, y_train, y_test = _load_data(feature_matrix_path, labels_path, test_size=0.2)
     y_train, y_test  = np.ravel(y_train), np.ravel(y_test)
 
-    model = RandomForestClassifier(bootstrap=False, criterion='entropy', max_depth= 81, max_features= "sqrt", min_samples_leaf= 1, min_samples_split= 3, n_estimators= 382, random_state=42, verbose=2)
+    model = RandomForestClassifier(bootstrap=False, criterion='entropy', max_depth= 85, max_features= "sqrt", min_samples_leaf= 1, min_samples_split= 3, n_estimators= 500, random_state=0, verbose=2)
     model.fit(x_train, y_train)
     predictions = model.predict(x_test)
     print("Accuracy:", accuracy_score(y_test, predictions))
